@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include "rbtree.h"
+#include "display.h"
 
 RBTree* T;
 

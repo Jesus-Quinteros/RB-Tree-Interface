@@ -27,10 +27,4 @@ void printTreeColor(RBNode*, int);
 int max(int, int);
 int height(RBNode*);
 
-void display();
-void drawTree(RBNode* node, float x, float y, float offsetX, float offsetY);
-void drawNode(float x, float y, int value, Color color);
-void drawEdge(float x1, float y1, float x2, float y2);
-void keyboard(unsigned char key, int x, int y);
-
 #endif

@@ -7,4 +7,4 @@ rbtree.o: rbtree.c
 display.o: display.c
 	gcc -c display.c
 clean:
-	rm -f
+	rm main *.o

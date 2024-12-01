@@ -29,6 +29,64 @@ void drawRoundedRect(float x, float y, float width, float height, float radius) 
   glEnd();
 }
 
+void drawNode(float x, float y, int value, Color color) {
+  // Dibujar círculo nodo
+  if (color == RED) glColor3f(1.0f, 0.0f, 0.0f); // RED
+  else glColor3f(0.0f, 0.0f, 0.0f); // BLACK
+
+  const float radius = 0.05f; // Radio nodo
+  glBegin(GL_TRIANGLE_FAN);
+  for (int i = 0; i <= 360; i++) {
+    float theta = i * 3.14159f / 180.0f;
+    glVertex2f(x + radius * cosf(theta), y + radius * sinf(theta));
+  }
+  glEnd();
+
+  // Dibujar valor nodo
+  char buffer[10];
+  snprintf(buffer, sizeof(buffer), "%d", value);
+  glColor3f(1.0f, 1.0f, 1.0f); // Blanco para el texto
+  if(-10 < value && value < 10) {
+    glRasterPos2f(x - 0.01f, y - 0.015f); // Centrar 1 cifra
+  }else { 
+    glRasterPos2f(x - 0.02f, y - 0.015f); // Centrar 2 cifras (3 cifras no se centra)
+  }
+  for (char* c = buffer; *c != '\0'; c++) {
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
+  }
+}
+
+void drawEdge(float x1, float y1, float x2, float y2) {
+  glColor3f(0.0f, 0.0f, 0.0f); // Arista negra
+  glBegin(GL_LINES);
+  glVertex2f(x1, y1);
+  glVertex2f(x2, y2);
+  glEnd();
+}
+
+void drawTree(RBNode* node, float x, float y, float offsetX, float offsetY) {
+  if (node == NULL) return;
+
+  // Dibujar nodo actual
+  drawNode(x, y, node->key, node->color);
+
+  // Dibujar subárbol izquierdo
+  if (node->left != NULL) {
+    float leftX = x - offsetX;
+    float leftY = y - offsetY;
+    drawEdge(x, y, leftX, leftY); // Dibujar arista hacia hijo izquierdo
+    drawTree(node->left, leftX, leftY, offsetX / 2, offsetY);
+  }
+
+  // Dibujar el subárbol derecho
+  if (node->right != NULL) {
+    float rightX = x + offsetX;
+    float rightY = y - offsetY;
+    drawEdge(x, y, rightX, rightY); // Dibujar arista hacia hijo derecho
+    drawTree(node->right, rightX, rightY, offsetX / 2, offsetY);
+  }
+}
+
 void keyboard(unsigned char key, int x, int y) {
   if(key == 'i') {
     int value;
