@@ -1,12 +1,18 @@
 #include <GL/glut.h>
 #include <stdio.h>
-#include "rbtree.h"
 #include "display.h"
-
-RBTree* T;
+#define SIZE 50
 
 int main(int argc, char** argv) {
-  T = createRBTree();
+  int keys[SIZE];
+  int c = 0;
+  while(scanf("%d", &keys[c]) != EOF){
+    c++;
+    if(c >= SIZE) break;
+  }
+
+  setData(keys, c);
+
   /* // Prueba inicial libro de Cormen
   insertRBNode(T, createRBNode(11));
   insertRBNode(T, createRBNode(2));
@@ -19,6 +25,7 @@ int main(int argc, char** argv) {
   insertRBNode(T, createRBNode(4));
   */
   // 11,2,14,1,7,15,5,8,4,6,9,10,13,12,3,9,20,0,17,18,25,19,16,28,30,35
+  
   glutInit(&argc, argv);
   glutInitWindowSize(900, 700);
   glutCreateWindow("RED BLACK TREE__(Jesus Quinteros - B)");

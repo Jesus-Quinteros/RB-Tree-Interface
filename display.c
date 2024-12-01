@@ -3,8 +3,18 @@
 #include "rbtree.h"
 #include <math.h>
 #include <string.h>
+#include "display.h"
 
-extern RBTree* T;
+RBTree* T = NULL;
+int* keys;
+int size;
+int cont = 0;
+
+void setData(int* a, int n){
+  keys = a;
+  size = n;
+  T = createRBTree();
+}
 
 void drawText(const char* text, float x, float y) {
   glRasterPos2f(x, y);
@@ -88,16 +98,18 @@ void drawTree(RBNode* node, float x, float y, float offsetX, float offsetY) {
 }
 
 void keyboard(unsigned char key, int x, int y) {
-  if(key == 'i') {
-    int value;
-    printf("Value insert: ");
-    scanf("%d", &value);
-    insertRBNode(T, createRBNode(value));
-    glutPostRedisplay();
-  }
-  if(key == 27) {
+  if(cont >= size)
     exit(0);
-  }
+  else if(key == 's') {
+    insertRBNode(T, createRBNode(keys[cont++]));
+    glutPostRedisplay();
+  } else if(key == 'n'){
+    while(cont < size)
+      insertRBNode(T, createRBNode(keys[cont++]));
+    glutPostRedisplay();
+  } else if(key == '\e')
+    exit(0);
+
 }
 
 void display() {
@@ -106,8 +118,8 @@ void display() {
   drawRoundedRect(-0.98f, 0.75f, 0.4f, 0.2f, 0.03f);
 
   glColor3f(0.0f, 0.0f, 0.0f);
-  drawText("Insert -> (i)", -0.9f, 0.87f);
-  drawText("Exit -> (Esc)", -0.9f, 0.80f);
+  drawText("Next -> (n)", -0.9f, 0.87f);
+  drawText("Step -> (s)", -0.9f, 0.80f);
 
   if (T && T->root) {
     float startX = 0.0f;   // Coordenada X inicial (root)
