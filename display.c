@@ -129,12 +129,11 @@ void drawNextValue() {
     char buffer[5];
     snprintf(buffer, sizeof(buffer), "%d", keys[cont]);
     glColor3f(0.0f, 0.0f, 0.0f);
-    if(keys[cont])
-      if(-10 < keys[cont] && keys[cont] < 10) {
-        drawText(buffer, 0.789f, 0.83f); // Centrar 1 cifra
-      }else {
-        drawText(buffer, 0.778f, 0.83f); // Centrar 2 cifras (3 cifras no centra)
-      }
+    if(-10 < keys[cont] && keys[cont] < 10) {
+      drawText(buffer, 0.789f, 0.83f); // Centrar 1 cifra
+    }else {
+      drawText(buffer, 0.778f, 0.83f); // Centrar 2 cifras (3 cifras no centra)
+    }
   }
 }
 
