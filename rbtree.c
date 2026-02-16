@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "rbtree.h"
 #include <GL/glut.h>
@@ -143,3 +143,4 @@ void printTreeColor(RBNode* node, int level) {
     printTreeColor(node->left, level+1);
   }
 }
+

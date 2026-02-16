@@ -8,3 +8,4 @@ void keyboard(unsigned char key, int x, int y);
 void setData(int* keys, int n);
 
 #endif
+

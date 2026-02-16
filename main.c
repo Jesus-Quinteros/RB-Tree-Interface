@@ -15,10 +15,11 @@ int main(int argc, char** argv) {
 
   glutInit(&argc, argv);
   glutInitWindowSize(900, 700);
-  glutCreateWindow("RED BLACK TREE__(Jesus Quinteros - B)");
+  glutCreateWindow("RED BLACK TREE");
   glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
   glutDisplayFunc(display);
   glutKeyboardFunc(keyboard);
   glutMainLoop();
   return 0;
 }
+
