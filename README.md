@@ -44,19 +44,21 @@ Esto generá los archivos necesarios además del ejecutable principal `main`.
   Considerando que `"datafile"` es un archivo de texto que contiene los datos que procesará el programa (un dato por línea). Pueden ser los archivos del proyecto
   `data1`, `data2` o cualquier otro que se desee usar considerando el formato de los mismos.
 
-- En Arch Linux:
+  - En GNU/Linux:
 
-  ```bash
-  ./main < datafile
-  ```
+      ```bash
+      ./main < datafile
+      ```
 
-- En windows:
+  - En windows:
 
-  ```bash
-  // En PowerShell
-  Get-Content datafile | ./main
-  // En CMD
-  main < datafile
+      ```bash
+      // En PowerShell
+      Get-Content datafile | ./main
+      // En CMD
+      main < datafile
+
+  También se puede ejecutar sin archivo auxiliar, con `./main` e ingresar manualmente los datos uno por uno por la entrada estándar.
 
 ## Contribuciones
 
